@@ -17,20 +17,6 @@
             padding: 10px 0;
             text-align: center;
         }
-        nav {
-            background-color: #8a2be2;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
         section {
             padding: 20px;
             margin: 20px;
@@ -70,17 +56,22 @@
         p {
             margin: 10px 0;
         }
+        footer {
+            background-color: #b8860b; /* Dark golden color */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Statistics Calculator</h1>
     </header>
-
-    <nav>
-        <a href="#confidenceInterval">Confidence Interval for Proportions</a>
-        <a href="#sampleSize">Sample Size Calculator</a>
-    </nav>
 
     <section id="confidenceInterval" class="calculator">
         <h2>Confidence Interval Calculator for Proportions</h2>
@@ -93,7 +84,6 @@
             <button type="button" onclick="calculateProportionCI()">Calculate Confidence Interval</button>
         </form>
         <p id="ci_z_score_result"></p>
-        <p id="ci_margin_error_result"></p>
         <p id="ci_confidence_interval_result"></p>
     </section>
 
@@ -108,6 +98,10 @@
         </form>
         <p id="size_sample_size_result"></p>
     </section>
+
+    <footer>
+        <p>&copy; 2024 Asma S. Alayeb</p>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
     <script>
@@ -141,7 +135,6 @@
             upperBound = parseFloat(upperBound.toFixed(4));
 
             document.getElementById("ci_z_score_result").innerHTML = "The z-score is: " + zScore;
-            document.getElementById("ci_margin_error_result").innerHTML = "The margin of error is: " + marginOfError;
             document.getElementById("ci_confidence_interval_result").innerHTML = "The confidence interval for the proportion is [" + lowerBound + ", " + upperBound + "]";
         }
 

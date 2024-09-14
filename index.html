@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistics Calculator</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +20,18 @@
             text-align: center;
             position: relative;
         }
-        header:before, footer:before {
+        /* Golden lip at the bottom of the header */
+        header:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #b8860b; /* Dark golden lip */
+        }
+        /* Golden lip at the top of the footer */
+        footer:before {
             content: "";
             position: absolute;
             top: 0;
@@ -65,17 +78,17 @@
 </head>
 <body>
     <header>
-        <h1>CCD's Statistics Calculator</h1>
+        <h1>Statistics Calculator</h1>
     </header>
 
     <section id="confidenceInterval" class="calculator">
         <h2>Confidence Interval Calculator for Proportions</h2>
         <form id="ciForm">
             <p><strong>Input Data:</strong></p>
-            <p>Number of Successes (x): <input type="text" id="ci_successes" size="10" placeholder="Optional"></p>
-            <p>Sample Size (n): <input type="text" id="ci_sample_size" size="10" placeholder="Optional"></p>
-            <p>Confidence Level (%): <input type="text" id="ci_confidence_level" size="10" placeholder="e.g., 95" required></p>
-            <p>Sample Proportion (p̂) (if x is not provided): <input type="text" id="ci_sample_proportion" size="10" placeholder="Optional"></p>
+            <p>Number of Successes (\(x\)): <input type="text" id="ci_successes" size="10" placeholder="Optional"></p>
+            <p>Sample Size (\(n\)): <input type="text" id="ci_sample_size" size="10" placeholder="Optional"></p>
+            <p>Confidence Level (\( \% \)): <input type="text" id="ci_confidence_level" size="10" placeholder="e.g., 95" required></p>
+            <p>Sample Proportion (\(\hat{p}\)) (if \(x\) is not provided): <input type="text" id="ci_sample_proportion" size="10" placeholder="Optional"></p>
             <button type="button" onclick="calculateProportionCI()">Calculate Confidence Interval</button>
         </form>
         <p id="ci_z_score_result"></p>
@@ -86,9 +99,9 @@
         <h2>Sample Size Calculator for Proportions</h2>
         <form id="sizeForm">
             <p><strong>Input Data:</strong></p>
-            <p>Margin of Error (%): <input type="text" id="size_margin_of_error" size="10" placeholder="Enter margin of error in %" required></p>
-            <p>Confidence Level (%): <input type="text" id="size_confidence_level" size="10" placeholder="e.g., 95" required></p>
-            <p>Sample Proportion (p̂): <input type="text" id="size_sample_proportion" size="10" required></p>
+            <p>Margin of Error (\( \% \)): <input type="text" id="size_margin_of_error" size="10" placeholder="Enter margin of error in %" required></p>
+            <p>Confidence Level (\( \% \)): <input type="text" id="size_confidence_level" size="10" placeholder="e.g., 95" required></p>
+            <p>Sample Proportion (\(\hat{p}\)): <input type="text" id="size_sample_proportion" size="10" required></p>
             <button type="button" onclick="calculateSampleSize()">Calculate Sample Size</button>
         </form>
         <p id="size_sample_size_result"></p>

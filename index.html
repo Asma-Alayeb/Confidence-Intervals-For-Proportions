@@ -18,7 +18,16 @@
             color: #fff;
             padding: 10px 0;
             text-align: center;
-            position: relative;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 1000;
+        }
+        header {
+            top: 0;
+        }
+        footer {
+            bottom: 0;
         }
         /* Golden lip at the bottom of the header */
         header:after {
@@ -41,7 +50,7 @@
             background-color: #b8860b; /* Dark golden lip */
         }
         .calculator {
-            margin: 20px auto;
+            margin: 120px auto 80px auto; /* Add space to avoid overlapping with fixed header/footer */
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;

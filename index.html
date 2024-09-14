@@ -11,15 +11,21 @@
             margin: 0;
             padding: 0;
         }
-        header {
+        header, footer {
             background-color: #6a0dad;
             color: #fff;
             padding: 10px 0;
             text-align: center;
+            position: relative;
         }
-        section {
-            padding: 20px;
-            margin: 20px;
+        header:before, footer:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #b8860b; /* Dark golden lip */
         }
         .calculator {
             margin: 20px auto;
@@ -35,7 +41,6 @@
             border: none;
             padding: 10px 20px;
             text-align: center;
-            text-decoration: none;
             display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
@@ -55,16 +60,6 @@
         }
         p {
             margin: 10px 0;
-        }
-        footer {
-            background-color: #b8860b; /* Dark golden color */
-            color: white;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -91,7 +86,7 @@
         <h2>Sample Size Calculator for Proportions</h2>
         <form id="sizeForm">
             <p><strong>Input Data:</strong></p>
-            <p>Margin of Error: <input type="text" id="size_margin_of_error" size="10" required></p>
+            <p>Margin of Error (%): <input type="text" id="size_margin_of_error" size="10" placeholder="Enter margin of error in %" required></p>
             <p>Confidence Level (%): <input type="text" id="size_confidence_level" size="10" placeholder="e.g., 95" required></p>
             <p>Sample Proportion (p̂): <input type="text" id="size_sample_proportion" size="10" required></p>
             <button type="button" onclick="calculateSampleSize()">Calculate Sample Size</button>
@@ -100,7 +95,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Asma S. Alayeb</p>
+        <p>&copy; 2024 Statistics Calculators</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
@@ -139,7 +134,7 @@
         }
 
         function calculateSampleSize() {
-            var marginOfError = parseFloat(document.getElementById("size_margin_of_error").value);
+            var marginOfError = parseFloat(document.getElementById("size_margin_of_error").value) / 100;
             var confidenceLevel = parseFloat(document.getElementById("size_confidence_level").value) / 100;
             var sampleProportion = parseFloat(document.getElementById("size_sample_proportion").value);
 
